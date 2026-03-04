@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentum Cover Band | WebApp Oficial</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-momentum: #3aace9;
+            --negro-fondo: #000000;
+            --negro-card: #0d0d0d;
+            --blanco: #ffffff;
+            --gris-suave: #1a1a1a;
+        }
+
+        /* Assegurem que el fons no sigui blanc per defecte */
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background-color: var(--negro-fondo); 
+            color: var(--blanco); 
+            margin: 0; 
+            padding: 0; 
+            overflow-x: hidden; 
+        }
+        
+        .bebas { 
+            font-family: 'Bebas Neue', cursive; 
+            text-transform: uppercase; 
+            line-height: 0.91; 
+            letter-spacing: 18px; 
+        }
+
+        /* --- HERO --- */
+        .hero {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('foto3.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 4px solid var(--azul-momentum);
+        }
+
+        .hero h1 { font-size: 5.5rem; margin: 0; }
+        .hero h2 { font-size: 2rem; color: var(--azul-momentum); letter-spacing: 5px; margin-top: 15px; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        .section-title { 
+            font-family: 'Bebas Neue'; 
+            font-size: 2.5rem; 
+            border-bottom: 2px solid var(--azul-momentum); 
+            display: inline-block; 
+            margin-bottom: 30px; 
+            padding-bottom: 5px; 
+            letter-spacing: 2px; 
+        }
+
+        /* --- GALERIA --- */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .gallery-item { 
+            border-radius: 12px; 
+            overflow: hidden; 
+            border: 1px solid #333; 
+            height: 300px; 
+            background: #111; 
+            transition: transform 0.3s ease; 
+        }
+        .gallery-item:hover { transform: scale(1.02); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- XARXES SOCIALS --- */
+        .social-section { text-align: center; margin-bottom: 60px; transition: transform 0.3s ease; }
+        .social-section:hover { transform: scale(1.05); }
+
+        .social-box { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        .btn-social { 
+            padding: 12px 25px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            color: white; 
+            border: 1px solid var(--azul-momentum); 
+            transition: 0.3s; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-social:hover { background: var(--azul-momentum); color: black; }
+
+        /* --- FORMULARI --- */
+        .form-card { background: var(--negro-card); padding: 40px; border-radius: 15px; border: 1px solid #222; margin-bottom: 60px; }
+        .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .field { display: flex; flex-direction: column; }
+        label { color: var(--azul-momentum); font-size: 0.85rem; margin-bottom: 10px; font-weight: bold; text-transform: uppercase; }
+        input, select { background: var(--gris-suave); border: 1px solid #333; color: white; padding: 14px; border-radius: 6px; font-size: 1rem; }
+        
+        .btn-submit { 
+            grid-column: 1 / -1; 
+            background: var(--azul-momentum); 
+            color: white; 
+            border: none; 
+            padding: 20px; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 1.5rem; 
+            margin-top: 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            transition: background 0.3s; 
+        }
+        .btn-submit:hover { background: #2a8dbf; }
+
+        /* --- AGENDA --- */
+        .calendar-container { background: #0a0a0a; padding: 30px; border-radius: 15px; border: 1px solid #222; margin-bottom: 60px; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
+        .day { background: #151515; padding: 20px; border-radius: 8px; text-align: center; border-bottom: 3px solid transparent; }
+        .day.booked { border-bottom-color: var(--azul-momentum); color: var(--azul-momentum); font-weight: bold; }
+
+        /* --- CONTACTE (FIXAT) --- */
+        .contact-footer { 
+            background: #050505; 
+            padding: 80px 20px; 
+            text-align: center; 
+            border-top: 2px solid #222; 
+            transition: transform 0.3s ease;
+        }
+        .contact-footer:hover { transform: scale(1.05); }
+
+        .contact-flex { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        .contact-text h3 { font-size: 3rem; color: var(--azul-momentum); margin-bottom: 20px; }
+        .contact-text p { font-size: 1.3rem; margin: 15px 0; }
+        .contact-text a { color: var(--blanco); text-decoration: none; border-bottom: 1px solid var(--azul-momentum); }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; letter-spacing: 8px; }
+            .bebas { letter-spacing: 8px; }
+            .hero { padding: 80px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <h1 class="bebas">MOMENTUM COVER BAND</h1>
+        <h2 class="bebas">ÉXITOS DE AYER, HOY Y SIEMPRE</h2>
+    </section>
+
+    <div class="container">
+        
+        <h2 class="section-title bebas">La Banda</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="foto2.jpg" alt="Directe Momentum"></div>
+            <div class="gallery-item"><img src="foto1.jpg" alt="Banda Momentum"></div>
+            <div class="gallery-item"><img src="foto3.jpg" alt="Escenari Momentum"></div>
+        </div>
+
+        <div class="social-section">
+            <h2 class="section-title bebas" style="border:none; margin-bottom: 0;">¡SÍGUENOS!</h2>
+            <div class="social-box">
+                <a href="https://www.instagram.com/momentum.coverband/?hl=es" target="_blank" class="btn-social">
+                    <i class="fab fa-instagram"></i> INSTAGRAM
+                </a>
+                <a href="https://www.youtube.com/@Momentum.coverband" target="_blank" class="btn-social">
+                    <i class="fab fa-youtube"></i> YOUTUBE
+                </a>
+            </div>
+        </div>
+
+        <h2 class="section-title bebas">Presupuesto WhatsApp</h2>
+        <div class="form-card">
+            <form id="momentumForm">
+                <div class="grid-form">
+                    <div class="field">
+                        <label>Fecha del Evento</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                    <div class="field">
+                        <label>Duración</label>
+                        <select id="duracion" required>
+                            <option value="120 Minutos">120 Minutos</option>
+                            <option value="90 Minutos">90 Minutos</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Ubicación</label>
+                        <input type="text" id="ubicacion" placeholder="Población" required>
+                    </div>
+                    <div class="field">
+                        <label>¿Hay equipo de sonido?</label>
+                        <select id="sonido" required>
+                            <option value="Sí">Sí (Ya hay en el local)</option>
+                            <option value="No">No (Lo trae Momentum)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit bebas">
+                        <i class="fab fa-whatsapp"></i> ENVIAR WHATSAPP
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <h2 class="section-title bebas">AGENDA 2026</h2>
+        <div class="calendar-container">
+            <div class="calendar-grid">
+                <div class="day booked">15 MAR<br>RESERVAT</div>
+                <div class="day">22 MAR</div>
+                <div class="day booked">29 MAR<br>LIVE SHOW</div>
+                <div class="day">05 ABR</div>
+                <div class="day booked">12 ABR<br>EVENTO</div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="contact-footer">
+        <div class="contact-flex">
+            <div class="contact-text">
+                <h3 class="bebas">Contacto</h3>
+                <p><strong>Gerard Segura</strong></p>
+                <p>Teléfono: <a href="tel:+34654325069">+34 654 32 50 69</a></p>
+                <p>Email: <a href="mailto:momentum.coverband@gmail.com">momentum.coverband@gmail.com</a></p>
+            </div>
+        </div>
+        <p style="margin-top: 40px; font-size: 0.9rem; opacity: 0.5;">© 2026 MOMENTUM COVER BAND</p>
+    </footer>
+
+    <script>
+        document.getElementById('momentumForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fecha = document.getElementById('fecha').value;
+            const duracion = document.getElementById('duracion').value;
+            const ubicacion = document.getElementById('ubicacion').value;
+            const sonido = document.getElementById('sonido').value;
+            
+            const mensaje = `Hola Gerard! Vull demanar info per Momentum:%0A- Data: ${fecha}%0A- Durada: ${duracion}%0A- Lloc: ${ubicacion}%0A- Equip de so: ${sonido}`;
+            
+            window.open(`https://wa.me/34654325069?text=${mensaje}`, '_blank');
+        });
+    </script>
+
+</body>
+</html>
